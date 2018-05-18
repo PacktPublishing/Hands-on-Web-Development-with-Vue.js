@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1 v-text="title" />
+    <h2>with {{ author }}</h2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    const vm = new Vue({
+      // Add Vue instance onto the #app DOM node
+      el: '#app',
+
+      // Define data that should be bound to the instance
+      // this.title => 'Learning Vuejs'
+      // this.author => 'Jon Doe'
+      data: {
+        title: 'Learning Vuejs',
+        author: 'Jon Doe'
+      }
+    })
+
+    // Task:
+    // Try altering data through console
+    // vm.author = 'Roman Kuba'
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@codeship/modelist": "^0.7.0",
+    "@firebase/app": "^0.1.10",
+    "@firebase/firestore": "0.3.5",
+    "@firebase/firestore-types": "^0.3.0",
+    "pretty": "^2.0.0",
+    "tailwindcss": "^0.4.3",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  }
+}

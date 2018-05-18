@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app" data-url="fake/url">
+    <h1>Favorite Fruits</h1>
+    <ul>
+      <!-- Use the `v-for` directive to loop through a iterateable like array or even object -->
+      <li v-for="fruit in fruits">{{ fruit }}</li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    function fakeAjax(url) {
+      // Print out the url to see it was called correctly
+      console.log(url)
+      return Promise.resolve([
+        'Banana', 'Kiwi', 'Mango'
+      ])
+    }
+
+    const vm = new Vue({
+      el: '#app',
+
+      data: {
+        fruits: []
+      },
+
+      // Define a async operation
+      async beforeMount() {
+        // Read the url off  the element we are attaching the instance to
+        const url = this.$el.dataset.url
+        // As fakeAjax will be async we want to await the response before assigning it
+        this.fruits = await fakeAjax(url)
+      }
+    })
+  </script>
+</body>
+
+</html>

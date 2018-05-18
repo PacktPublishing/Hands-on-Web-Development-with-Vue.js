@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h3>Open Tasks</h3>
+    <ul>
+      <!-- We can directlty reference the computed property open -->
+      <li v-for="task in open">{{ task.task }}</li>
+    </ul>
+    <hr>
+    <h3>✅ Completed Tasks</h3>
+    <ul>
+      <!-- We can directlty reference the computed property completed -->
+      <li v-for="task in completed">{{ task.task }}</li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+
+      data: {
+        tasks: [{
+            task: 'Learn list rendering',
+            done: false
+          },
+          {
+            task: 'Download VSCode',
+            done: true
+          },
+          {
+            task: 'Eat breakfast',
+            done: true
+          }
+        ]
+      },
+
+      // Computed properties that will be accessable on the instance
+      // and reevaluate once any reference (in this case `tasks`) changes.
+      computed: {
+        completed() {
+          // Return a new array including all tasks that are done
+          return this.tasks.filter(t => t.done)
+        },
+
+        open() {
+          // Return a new array including all tasks that are NOT done
+          return this.tasks.filter(t => !t.done)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

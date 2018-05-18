@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .fruit {
+      display: inline-block;
+      position: relative;
+      margin: 10px;
+      border: 5px solid #fff;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+      width: 200px;
+      height: 200px;
+    }
+
+    .fruit.active {
+      background: #d4bbbb;
+    }
+
+    .fruit span {
+      background: #d65555;
+      color: #fff;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      padding: 5px;
+      left: 0;
+    }
+
+    .fruit p {
+      text-align: center;
+      font-size: 2em;
+      line-height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" data-url="fake/url">
+    <h1>My Favorite Fruits</h1>
+
+    <!-- Here we can listen to the inside event @clicked and fire a method defined on the outside -->
+    <fruit v-for="fruit in fruits" :name="fruit" @clicked="log(fruit)"></fruit>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    function fakeAjax(url) {
+      console.log(url)
+      return Promise.resolve([
+        'Banana', 'Kiwi', 'Mango'
+      ])
+    }
+
+    Vue.component('fruit', {
+
+      props: {
+        name: String
+      },
+
+      data() {
+        return {
+          active: false
+        }
+      },
+
+      computed: {
+        activeClass() {
+          if (this.active) return ['active']
+        }
+      },
+
+      template: `
+        <div class="fruit" :class="activeClass" @click="toggleActive">
+          <p>{{ name }}</p>
+        </div>
+      `,
+
+      methods: {
+        toggleActive() {
+          this.active = !this.active
+          // Communicate an event from inside the component
+          // to the outside world
+          this.$emit('clicked', this.name)
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el: '#app',
+
+      data: {
+        fruits: []
+      },
+
+      methods: {
+        log(fruit) {
+          console.log('clicked on ' + fruit)
+        }
+      },
+
+      async beforeMount() {
+        const url = this.$el.dataset.url
+        this.fruits = await fakeAjax(url)
+      }
+    })
+  </script>
+</body>
+
+</html>

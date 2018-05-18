@@ -1,0 +1,87 @@
+@tailwind preflight;
+@tailwind utilities;
+
+html, body {
+  @apply .bg-grey-lightest;
+}
+
+a {
+  @apply .text-purple .no-underline;
+
+  &:hover,
+  &:focus {
+    @apply .text-purple-dark;
+  }
+
+  &:hover {
+    @apply .underline;
+  }
+}
+
+#app {
+  @apply .mx-auto .flex .py-4;
+}
+
+#sidebar {
+  max-width: 300px;
+  @apply .flex-1 .p-4;
+}
+
+#content {
+  @apply .flex-grow .bg-white .rounded .p-4 .shadow;
+}
+
+.contact {
+  transition: all 300ms;
+  @apply .block .bg-white .p-4 .mb-2 .shadow .no-underline .rounded;
+
+  span {
+    @apply .text-grey-darker .font-bold;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    @apply .shadow-md;
+  }
+}
+
+.btn {
+  @apply .text-base .font-semibold .rounded-full .px-4 .py-1 .leading-normal .bg-white .border .border-purple .text-purple;
+
+  &:hover {
+    @apply .bg-purple .text-white;
+  }
+}
+
+.title {
+  @apply .text-lg .text-grey-dark .border-b-2 .pb-4 .mb-4;
+}
+
+.input {
+  @apply .bg-grey-lighter .block .p-4 .rounded .w-full .mb-4;
+
+  &-block {
+
+  }
+
+  &-label {
+    @apply .font-bold .py-2 .block
+  }
+}
+
+.option {
+  @apply .p-2 .m-2 .rounded .text-center .relative;
+
+  input {
+    @apply .absolute;
+    left: 10px;
+  }
+}
+
+.textarea {
+  @apply .bg-grey-lighter .block .p-4 .rounded .w-full .mb-4;
+}
+
+.tag {
+  @apply .inline-block .px-2 .py-1 .bg-green .rounded .m-1;
+}

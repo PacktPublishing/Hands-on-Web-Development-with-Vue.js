@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    .fruit {
+      display: inline-block;
+      position: relative;
+      margin: 10px;
+      border: 5px solid #fff;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+      width: 200px;
+      height: 200px;
+    }
+
+    .fruit.active {
+      background: #d4bbbb;
+    }
+
+    .fruit span {
+      background: #d65555;
+      color: #fff;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      padding: 5px;
+      left: 0;
+    }
+
+    .fruit p {
+      text-align: center;
+      font-size: 2em;
+      line-height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" data-url="fake/url">
+    <h1>My favorite fruits</h1>
+
+    <fruit v-for="fruit in fruits" :fruit="fruit" />
+  </div>
+
+  <!-- Use a script tag to define the template -->
+  <script type="x-template" id="fruit">
+    <div class="fruit">
+      <span>Script Template</span>
+      <p>{{ fruit }}</p>
+    </div>
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script>
+    Vue.config.devtools = true
+
+    function fakeAjax(url) {
+      console.log(url)
+      return Promise.resolve([
+        'Banana', 'Kiwi', 'Mango'
+      ])
+    }
+
+    const Fruit = {
+      name: 'fruit',
+
+      props: ['fruit'],
+
+      data() {
+        return {
+          active: false
+        }
+      },
+
+      // 3 options to get access to templates:
+
+      // ------
+      // 1. reference the script template
+      // template: '#fruit'
+      // ------
+
+      // ------
+      // 2. Use the template defined on the instance
+      // template: `
+      //   <div class="fruit" :class="activeClass" @click="toggleActive">
+      //     <span>String Template</span>
+      //     <p>{{ fruit }}</p>
+      //   </div>
+      // `,
+      // ------
+
+      // 3. Use a render function
+      // If this seems complex, it's just beneficial to know about them early on
+      // as they are very powerful
+      render(h) {
+        return h('div', {
+          attrs: {
+            class: 'fruit'
+          }
+        }, [
+          h('span', 'Render Template'),
+          h('p', this.fruit)
+        ])
+      },
+
+      methods: {
+        toggleActive() {
+          this.active = !this.active
+        }
+      },
+
+      computed: {
+        activeClass() {
+          if (this.active) return ['active']
+        }
+      }
+    }
+
+    // Definie Fruit as a global component
+    Vue.component('fruit', Fruit)
+
+    const vm = new Vue({
+      el: '#app',
+
+      data: {
+        fruits: []
+      },
+
+      async beforeMount() {
+        const url = this.$el.dataset.url
+        this.fruits = await fakeAjax(url)
+      }
+
+    })
+  </script>
+</body>
+
+</html>

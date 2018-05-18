@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h3>Open Tasks</h3>
+    <ul>
+      <!-- We can directlty reference the computed property open -->
+      <li v-for="task in open">{{ task.task }}
+        <button v-on:click="toggle(task)">Completed</button>
+      </li>
+    </ul>
+    <hr>
+    <h3>✅ Completed Tasks</h3>
+    <ul>
+      <!-- We can directlty reference the computed property completed -->
+      <li v-for="task in completed">{{ task.task }}
+        <button v-on:click="toggle(task)">Not Completed</button>
+      </li>
+    </ul>
+    <hr>
+    <input type="text" v-model="task">
+    <button @click="addTask">Add new task</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+
+      data: {
+        task: '',
+        tasks: [{
+            task: 'Learn list rendering',
+            done: false
+          },
+          {
+            task: 'Download VSCode',
+            done: true
+          },
+          {
+            task: 'Eat breakfast',
+            done: true
+          }
+        ]
+      },
+
+      computed: {
+        completed() {
+          return this.tasks.filter(t => t.done)
+        },
+
+        open() {
+          return this.tasks.filter(t => !t.done)
+        }
+      },
+
+      // Methods are the functions that are available on the instance
+      // this.toggle() will call the toggle method
+      methods: {
+        toggle(task) {
+          const i = this.tasks.indexOf(task)
+          this.tasks[i].done = !this.tasks[i].done
+        },
+
+        addTask() {
+          // Push to the array so Vue can track that the change happend
+          this.tasks.push({
+            task: this.task,
+            done: false
+          })
+          this.task = ''
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
