@@ -10,10 +10,13 @@ By the end of this course, you will be able to write well tested, clean code to 
 <H2>What You Will Learn</H2>
 <DIV class=book-info-will-learn-text>
 <UL>
-<LI>Gain practical experience of Java 9, including modules, the Streams API, the Collections API, multi-level JARs and HTTP/2 clients. 
-<LI>Learn about enterprise Java (JEE8), including JSF, JPA, and CDI 
-<LI>How to build real enterprise Java applications including a website and a microservice 
-<LI>Learn to use tools such as Maven, and PrimeFaces </LI></UL></DIV>
+<LI>Learn to build complete data-driven UIs  
+<LI>Create amazing web applications and increase productivity with Vue Libraries 
+<LI>Initiate Projects with Vue-cli and manage state with Vuex
+<LI>Create a clean data flow for your application
+<LI>Introduce Jest to understand test paradigms
+<LI>Use the Vue ecosystem with vue-cli, vuex, and vue-test-utils
+<LI>Leverage vue-test-utils and learn real-world Vue tricks</LI></UL></DIV>
 
 ## Instructions and Navigation
 ### Assumed Knowledge
