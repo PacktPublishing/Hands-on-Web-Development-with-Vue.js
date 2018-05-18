@@ -1,25 +1,28 @@
 Hands-on-Web-Development-with-Vue.js
 ====================================
+This is the code repository for [Hands-On Web Development with Vue.js [Video]](https://www.packtpub.com/web-development/hands-web-development-vuejs-video?utm_source=github&utm_medium=repository&utm_campaign=9781787283039), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the video course from start to finish.
 
-
-## Hands-on Web Development with Vue.js [video], published by Packt
+Please read [README_PACKT](README_PACKT.md) to get more information about the video course:
 
 ---
 
-## How to use this repository
+## Notes from the Author:
+[Roman Kuba](https://github.com/codebryo)
+
+### How to use this repository
 
 This repositroy includes all important source code files the video course.
 Let me guide you through this, so you know what's up:
 
-## Section 1
+### Section 1
 
 This is split up into all the individual folders.
 Each contains the finished `index.html` with some comments dropped in to explain critical pieces.
 
-## Section 2 - 6
+### Section 2 - 6
 
 These sections only focus on the application we were building over this course.
-As we were using vue-cli to scaffold the project, I didn't put all those
+As we were using `vue-cli` to scaffold the project, I didn't put all those
 auto generated files into the folders.
 
 What you will find though is the content of the `src` folder.
@@ -28,7 +31,7 @@ The code in each folder always represents the final state at the end of the sect
 So if you want to pick up at a later section, just drop the files into your own `src` folder,
 and you can continue the next section from there.
 
-## SETUP
+### SETUP
 
 This folder contains all the SETUP files that are referenced throughout the course.
 Feel free to use them as explained in the videos.
